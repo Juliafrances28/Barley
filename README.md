@@ -11,6 +11,7 @@ Use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather da
 
 ```
 Build a weather dashoard 
+
 ```
 
 ## Acceptance Criteria
@@ -32,7 +33,6 @@ Clicking on a city in the search history present the current and future conditio
 Save search history to local storage and when loading the page present the last searched city forecast
 
 ```
-
 The following image demonstrates the application functionality:
 
 ![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
