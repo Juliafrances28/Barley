@@ -1,3 +1,4 @@
+
 // use a function to gather the date for  the following: city name, the current date, an icon representation of the weather conditions, the temperature, the humidity, the wind speed, the UV index.
 
 // use color to express the weather conditions more specificially, color should represent favorable, moderate or severe. Is exicuting this tied in with html? 
@@ -35,10 +36,8 @@
 //can call a function that runs list items of history onto
 // create html elements for the current weather
 
-
-
 $(document).ready(function () {
-  var apiKey = "a3cc1b77d3dea57099c059db10e6c532"
+  var apiKey = "a3cc1b77d3dea57099c059db10e6c532";
 
   $(".searchBtn").on("click", function (event) {
     event.preventDefault();
@@ -60,15 +59,12 @@ $(document).ready(function () {
       getUVIndex(lat,lon); 
     
     });
-
-
     
     function getUVIndex (lat,lon) {
       var queryUrl2 =
       "https://api.openweathermap.org/data/2.5/uvi?lat=" +lat+ "&lon="+ lon + "&appid=" +
       apiKey;
 
- 
       $.ajax({
         url: queryUrl2,
         method: "GET",
@@ -79,7 +75,7 @@ $(document).ready(function () {
       });
 
     }
-x
+
 
     $("#currentDate").text(moment().format("dddd MMM D YYYY"));
     // function for searching weather
@@ -87,15 +83,15 @@ x
     // define lat and lon as variables
 
     getFiveday()
-     
-    function getFiveday() {
-    var queryUrl3 =
+  
+    function getFiveday(currentCity) {
+      // event.preventDefault();
+      var currentCity = $(".fiveDay").val();
+      console.log(currentCity);   
+
+    var queryUrl3 
     "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity+ "&appid=" + apiKey;
   
-    var currentCity = $(".fiveDay").val();
-    console.log(currentCity);  
-
-
     $.ajax({
         url: queryUrl3,
         method: "GET",
@@ -109,22 +105,22 @@ x
 
     // use a for loop for the five day forcast 
 
-    for (var i = 0; i < response.length; i++) {
-      console.log(response.length);
+    // for (var i = 0; i < response.length; i++) {
+    //   console.log(response.length);
 
-      // city name,
-      // the current date,
-      // an icon representation of the weather conditions,
-      // the temperature,
-      // the humidity,
-      // the wind speed,
-      // the UV index.
-    }
+    //   // city name,
+    //   // the current date,
+    //   // an icon representation of the weather conditions,
+    //   // the temperature,
+    //   // the humidity,
+    //   // the wind speed,
+    //   // the UV index.
+    // }
 
-    // convert celisus to fahrenheit
-    var tempF = (response.main.temp - 273.15) * 1.8 + 32; //-459.67
-    $(".temp").text("Temperature (K) " + response.main.temp);
-    $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
+    // // convert celisus to fahrenheit
+    // var tempF = (response.main.temp - 273.15) * 1.8 + 32; //-459.67
+    // $(".temp").text("Temperature (K) " + response.main.temp);
+    // $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
 
     
 
@@ -143,22 +139,3 @@ x
 
 
 
-    // getUVIndex()
-    
-    // function getUVIndex () {
-    //   var queryUrl2 =
-    //   "api.openweathermap.org/data/2.5/forecast?q=" +
-    //   currentCity+
-    //   "&appid=" +
-    //   apiKey;
-
-    //   $.ajax({
-    //     url: queryUrl2,
-    //     method: "GET",
-    //   }).then(function (response) {
-    //     console.log(queryUrl2);
-    //     console.log(response);
-      
-    //   });
-  
-    //}
