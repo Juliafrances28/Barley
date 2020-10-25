@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,37 +18,53 @@
     <span class="navbar-brand mb-0 h1"> Weather</span>
   </nav>
 
-  <!-- better hmtl format, redo this  -->
+   <br> </br>
   
+
+  <!-- better hmtl format, redo this  -->
+
+
+  <div class="container">
        <div class= "row">
-         <div class="col-4">
-           <div class="search-box">
-            <div class = "city"> 
-              <div class = "fiveDay">
-            </div>         
-           </div>
+         <div class="col-sm-4">
+          <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="inputSearch" class="sr-only"></label>
+              <input type="search" class="form-control" id="runSearch">
+            
+            </div>
+            <button type ="search" class="searchBtn btn-primary mb-2">Search</button>
+             
+            
+          </form>  
+     
+              <div class = "history">  
+
          </div>
         </div>
       </div>
+    </div>
+     
 
-         <div class="col-8">
+    <div class="container">
+         <div class="col-sm-8">
           <div class= "row">
           </div> 
-            <div class= "row">
+            <div class = "city"> 
             </div>  
-        </div>
+            <div class = "currentCon">
+            </div>  
+            <div class= "row">
        </div>
 
-       <form class="form-inline">
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="inputSearch" class="sr-only"></label>
-          <input type="search" class="form-control" id="runSearch">
-        
+            <div class = "fiveDay">
         </div>
-        <button type ="search" class="searchBtn btn-primary mb-2">Search</button>
-         
-        
-      </form>  
+
+      </div>
+    </div>
+  
+
+  
 
      <!-- Optional JavaScript 
 jQuery first, then Popper.js, then Bootstrap JS -->

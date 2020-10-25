@@ -36,6 +36,10 @@
 //can call a function that runs list items of history onto
 // create html elements for the current weather
 
+function convertTemperature (run) {
+  var tempF = (run - 273.15) * 1.8 + 32; 
+  return (tempF)
+ }
 $(document).ready(function () {
   var apiKey = "a3cc1b77d3dea57099c059db10e6c532";
 
@@ -47,13 +51,25 @@ $(document).ready(function () {
     var queryUrl1 = 
     "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity+ "&appid=" + apiKey;
 
+
     $.ajax({
       url: queryUrl1,
       method: "GET",
     }).then(function (response) {
       console.log(queryUrl1);
       console.log(response);
-       
+
+      $(".currentCon").append('<div> Current Conditions </div>');  
+
+           
+      $(".currentCon").append('<div> temp: '+ convertTemperature(response.main. temp) +' </div>'); 
+
+      $(".currentCon").append('<div> humidity: '+ response.main.humidity +' </div>'); 
+      $(".currentCon").append('<div> windspeed: '+ response.wind.speed +' </div>'); 
+     
+     var temp= response.main.temp 
+     "the temp is" + response.main.temp 
+
       var lat = response.coord.lat;
       var lon = response.coord.lon; 
       getUVIndex(lat,lon); 
@@ -69,13 +85,31 @@ $(document).ready(function () {
         url: queryUrl2,
         method: "GET",
       }).then(function (response) {
+
         console.log(queryUrl2);
         console.log(response);
-      
+        
+        // Present the city name, the date, an icon representation of weather 
+        // conditions,the temperature, the humidity,the wind speed, the UV index 
+        // and (the color should indicate whether the conditions are favorable, moderate, or severe)
+
+        $(".currentCon").append('<div> Uv Index: '+ response.value +' </div>'); 
+        
+
       });
+         
 
-    }
+      
+   
+      //   var theCity = $(this).siblings(".city").val();
 
+      //   var  futureInfo = $(this).parent().attr(".fiveday");
+
+  
+      //  localStorage.setItem(futureInfo,theCity);
+
+
+      // window.localStorage.setItem("history", json.stringify(history)); 
 
     $("#currentDate").text(moment().format("dddd MMM D YYYY"));
     // function for searching weather
@@ -84,13 +118,13 @@ $(document).ready(function () {
 
     getFiveday()
   
-    function getFiveday(currentCity) {
+    function getFiveday() {
       // event.preventDefault();
-      var currentCity = $(".fiveDay").val();
+      var currentCity = $("#runSearch").val();
       console.log(currentCity);   
 
-    var queryUrl3 
-    "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity+ "&appid=" + apiKey;
+    var queryUrl3 =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" + currentCity+ "&appid=" + apiKey;
   
     $.ajax({
         url: queryUrl3,
@@ -98,15 +132,31 @@ $(document).ready(function () {
       }).then(function (response) {
         console.log(queryUrl3);
         console.log(response);
-        
+
+        $(".fiveDay").append('<div> fiveday forcast: '+ response. </div>'); 
+\
+
+      
+
       });
   
     }
+     
 
     // use a for loop for the five day forcast 
 
-    // for (var i = 0; i < response.length; i++) {
-    //   console.log(response.length);
+     for (var i = 0; i < response.list.length; i++) {
+     
+      var day = response.list[i]
+
+      day.main.temp
+      day.main.humidity
+
+      
+      $(".currentCon").append('<div> furtureForcast: '+  day.main.temp +
+      day.main.humidity +' </div>');  
+    
+
 
     //   // city name,
     //   // the current date,
@@ -117,8 +167,11 @@ $(document).ready(function () {
     //   // the UV index.
     // }
 
-    // // convert celisus to fahrenheit
-    // var tempF = (response.main.temp - 273.15) * 1.8 + 32; //-459.67
+    
+     
+
+
+   
     // $(".temp").text("Temperature (K) " + response.main.temp);
     // $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
 
@@ -131,11 +184,12 @@ $(document).ready(function () {
     $("tempF").val(localStorage.getItem("tempF"));
     $("humidity").val(localStorage.getItem("humidity"));
     $("windSpeed").val(localStorage.getItem("windSpeed"));
-  
+    }
 
 });
 
 });
+
 
 
 
