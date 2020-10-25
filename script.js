@@ -45,7 +45,7 @@ $(document).ready(function () {
     var currentCity = $("#runSearch").val();
     console.log(currentCity);
 
-    var queryUrl1 =
+    var queryUrl1 = 
     "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity+ "&appid=" + apiKey;
 
     $.ajax({
@@ -54,30 +54,32 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(queryUrl1);
       console.log(response);
+       
+      var lat = response.coord.lat;
+      var lon = response.coord.lon; 
+      getUVIndex(lat,lon); 
+    
     });
 
 
-
-    // getUVIndex()
     
-    // function getUVIndex () {
-    //   var queryUrl2 =
-    //   "https://api.openweathermap.org/data/2.5/uvi?lat=" +lat+ "&lon="+ lon + "&appid=" +
-    //   apiKey;
+    function getUVIndex (lat,lon) {
+      var queryUrl2 =
+      "https://api.openweathermap.org/data/2.5/uvi?lat=" +lat+ "&lon="+ lon + "&appid=" +
+      apiKey;
 
-    //   // var lat = 
-    //   // var lon = 
-
-    //   $.ajax({
-    //     url: queryUrl2,
-    //     method: "GET",
-    //   }).then(function (response) {
-    //     console.log(queryUrl2);
-    //     console.log(response);
+ 
+      $.ajax({
+        url: queryUrl2,
+        method: "GET",
+      }).then(function (response) {
+        console.log(queryUrl2);
+        console.log(response);
       
-    //   });
+      });
 
-    // }
+    }
+x
 
     $("#currentDate").text(moment().format("dddd MMM D YYYY"));
     // function for searching weather
@@ -107,22 +109,22 @@ $(document).ready(function () {
 
     // use a for loop for the five day forcast 
 
-    // for (var i = 0; i < response.length; i++) {
-    //   console.log(response.length);
+    for (var i = 0; i < response.length; i++) {
+      console.log(response.length);
 
-    //   // city name,
-    //   // the current date,
-    //   // an icon representation of the weather conditions,
-    //   // the temperature,
-    //   // the humidity,
-    //   // the wind speed,
-    //   // the UV index.
-    // }
+      // city name,
+      // the current date,
+      // an icon representation of the weather conditions,
+      // the temperature,
+      // the humidity,
+      // the wind speed,
+      // the UV index.
+    }
 
-    // // convert celisus to fahrenheit
-    // var tempF = (response.main.temp - 273.15) * 1.8 + 32;
-    // $(".temp").text("Temperature (K) " + response.main.temp);
-    // $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
+    // convert celisus to fahrenheit
+    var tempF = (response.main.temp - 273.15) * 1.8 + 32; //-459.67
+    $(".temp").text("Temperature (K) " + response.main.temp);
+    $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
 
     
 
