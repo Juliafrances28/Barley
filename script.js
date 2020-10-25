@@ -42,7 +42,7 @@ $(document).ready(function () {
 
   $(".searchBtn").on("click", function (event) {
     event.preventDefault();
-   var currentCity = $("#runSearch").val();
+    var currentCity = $("#runSearch").val();
     console.log(currentCity);
 
     var queryUrl1 =
@@ -57,49 +57,53 @@ $(document).ready(function () {
     });
 
 
-    getUVIndex()
-    
-    function getUVIndex () {
-      var queryUrl2 =
-      "api.openweathermap.org/data/2.5/forecast?q=" +
-      currentCity+
-      "&appid=" +
-      apiKey;
 
-      $.ajax({
-        url: queryUrl2,
-        method: "GET",
-      }).then(function (response) {
-        console.log(queryUrl2);
-        console.log(response);
-      
-      });
-  
-      
-
-    }
+    // getUVIndex()
     
+    // function getUVIndex () {
+    //   var queryUrl2 =
+    //   "https://api.openweathermap.org/data/2.5/uvi?lat=" +lat+ "&lon="+ lon + "&appid=" +
+    //   apiKey;
+
+    //   // var lat = 
+    //   // var lon = 
+
+    //   $.ajax({
+    //     url: queryUrl2,
+    //     method: "GET",
+    //   }).then(function (response) {
+    //     console.log(queryUrl2);
+    //     console.log(response);
+      
+    //   });
+
+    // }
 
     $("#currentDate").text(moment().format("dddd MMM D YYYY"));
     // function for searching weather
     // ajax call
     // define lat and lon as variables
+
+    getFiveday()
      
-    // var queryUrl3 =
-    // "https://api.openweathermap.org/data/2.5/uvi?lat=" +lat+ "&lon="+ lon + "&appid=" +
-    // apiKey;
-     
-      
-    // $.ajax({
-    //     url: queryUrl3,
-    //     method: "GET",
-    //   }).then(function (response) {
-    //     console.log(queryUrl3);
-    //     console.log(response);
-        
-    //   });
+    function getFiveday() {
+    var queryUrl3 =
+    "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity+ "&appid=" + apiKey;
   
-    
+    var currentCity = $(".fiveDay").val();
+    console.log(currentCity);  
+
+
+    $.ajax({
+        url: queryUrl3,
+        method: "GET",
+      }).then(function (response) {
+        console.log(queryUrl3);
+        console.log(response);
+        
+      });
+  
+    }
 
     // use a for loop for the five day forcast 
 
@@ -129,9 +133,30 @@ $(document).ready(function () {
     $("tempF").val(localStorage.getItem("tempF"));
     $("humidity").val(localStorage.getItem("humidity"));
     $("windSpeed").val(localStorage.getItem("windSpeed"));
-  });
+  
+
 });
- 
+
+});
 
 
 
+    // getUVIndex()
+    
+    // function getUVIndex () {
+    //   var queryUrl2 =
+    //   "api.openweathermap.org/data/2.5/forecast?q=" +
+    //   currentCity+
+    //   "&appid=" +
+    //   apiKey;
+
+    //   $.ajax({
+    //     url: queryUrl2,
+    //     method: "GET",
+    //   }).then(function (response) {
+    //     console.log(queryUrl2);
+    //     console.log(response);
+      
+    //   });
+  
+    //}
