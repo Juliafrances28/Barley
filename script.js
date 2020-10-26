@@ -1,76 +1,51 @@
 
-// use a function to gather the date for  the following: city name, the current date, an icon representation of the weather conditions, the temperature, the humidity, the wind speed, the UV index.
-
-// use color to express the weather conditions more specificially, color should represent favorable, moderate or severe. Is exicuting this tied in with html? 
-
-// generate a search history for perviously search cities. the user should be able to see current and future conditions for cities in the search history.
-
-// use local storage to save the search history. So that the website defaults to the last city searched when loading the page. //
-
-// query (search) and history button both become on click functions.
-
-
-    // one input field
-
-    // search issue ajax call when clicked
-
-    // call for uv -  different api key/ ajax call
-    // call for history
-
-    // same key but different url for each
-
-    // track search history
-
-//document.ready
-// search button on click
-// inside
-// store value of search in a variable
-// run a function for searching the weather
-
-// store history
-// on click in the list of history then run the function for searching the weather
-
-// input are variables. What variables should be used here?
-
-// ajax call
-//can call a function that runs list items of history onto
-// create html elements for the current weather
-
+// this fuction is for tempature conversion 
 function convertTemperature (run) {
   var tempF = (run - 273.15) * 1.8 + 32; 
   return (tempF)
  }
 
+// this fuction wrapps around all the code and tells the code when to start.
 $(document).ready(function () {
   var apiKey = "a3cc1b77d3dea57099c059db10e6c532";
 
+  // this is a fuction for when the search button is clicked on to search for the weather in a particular city. 
   $(".searchBtn").on("click", function (event) {
     event.preventDefault();
     var currentCity = $("#runSearch").val();
     console.log(currentCity);
 
+    // Here is the link for the first api call found in the openWeatherapi
     var queryUrl1 = 
     "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity+ "&appid=" + apiKey;
 
-
+  // this is the syntax for issuing the call 
     $.ajax({
       url: queryUrl1,
       method: "GET",
     }).then(function (response) {
       console.log(queryUrl1);
       console.log(response);
-
+     
+      // this is my attempt to get the date to appear on the page 
+      $("#currentDay").text(moment().format("dddd MMM D YYYY"))
+      
+      // the following code makes the responses from the ajax calls appear on the page 
       $(".currentCon").append('<div> Current Conditions </div>');  
-
            
-      $(".currentCon").append('<div> temp: '+ convertTemperature(response.main. temp) +' </div>'); 
+      $(".currentCon").append('<div> temp: '+ convertTemperature(response.main. temp) +' </div>');
 
       $(".currentCon").append('<div> humidity: '+ response.main.humidity +' </div>'); 
+
       $(".currentCon").append('<div> windspeed: '+ response.wind.speed +' </div>'); 
      
+      $(".currentCon").append('<div> name: '+ response.wind.speed +' </div>'); 
+      
+      // the following line to turns the response into a string. 
      var temp = response.main.temp 
      "the temp is" + response.main.temp 
-
+       
+      // the following code will lead into the next function. Here lat and lon are defined at variables. this enables us to pass lat, lon into a next function. 
       var lat = response.coord.lat;
       var lon = response.coord.lon; 
       getUVIndex(lat,lon); 
@@ -80,7 +55,7 @@ $(document).ready(function () {
     });
     
 
-
+     // The following function will generate the uvIndex throught another api call 
     function getUVIndex (lat,lon) {
       var queryUrl2 =
       "https://api.openweathermap.org/data/2.5/uvi?lat=" +lat+ "&lon="+ lon + "&appid=" +
@@ -93,38 +68,17 @@ $(document).ready(function () {
 
         console.log(queryUrl2);
         console.log(response);
-        
-        // Present the city name, the date, an icon representation of weather 
-        // conditions,the temperature, the humidity,the wind speed, the UV index 
-        // and (the color should indicate whether the conditions are favorable, moderate, or severe)
-
+       
+    
         $(".currentCon").append('<div> Uv Index: '+ response.value +' </div>'); 
         
 
       });
          
-
-      
-   
-      //   var theCity = $(this).siblings(".city").val();
-
-      //   var  futureInfo = $(this).parent().attr(".fiveday");
-
-  
-      //  localStorage.setItem(futureInfo,theCity);
-
-
-      // window.localStorage.setItem("history", json.stringify(history)); 
-
-    $("#currentDate").text(moment().format("dddd MMM D YYYY"));
-    // function for searching weather
-    // ajax call
-    // define lat and lon as variables
-
+     // this function will generate the responses for  the five day forcast.
     getFiveday()
   
     function getFiveday() {
-      // event.preventDefault();
       var currentCity = $("#runSearch").val();
       console.log(currentCity);  
 
@@ -147,11 +101,12 @@ $(document).ready(function () {
     }
      
 
-    // use a for loop for the five day forcast 
+    // I am a little uncertain here, but I used a for loop for the five day forcast. Allowing it to look through the arrive and generate the data from the list. This makes logical sense, However, all I can see on the page is fiveday forcast [object object]
 
      for (var i = 0; i < response.list.length; i++) {
      
       var current= response.list[i]
+      console.log(response.list.length); 
 
       current.temp
       current.humidity
@@ -161,27 +116,7 @@ $(document).ready(function () {
      }
 
 
-// switch to one call api same as uv, actually daily  
-
-     // the api hasall this 
-    //   // city name,
-    //   // the current date,
-    //   // an icon representation of the weather conditions,
-    //   // the temperature,
-    //   // the humidity,
-    //   // the wind speed,
-    //   // the UV index.
-    // }
-
-    
-     
-
-
-   
-    // $(".temp").text("Temperature (K) " + response.main.temp);
-    // $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
-
-    
+      // I know we need to use localStorage but not sure if the follow code is relevant. 
 
     $("city").val(localStorage.getItem("city"));
     $("currentDate").val(localStorage.getItem("curentDate")); 
