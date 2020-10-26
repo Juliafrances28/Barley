@@ -40,6 +40,7 @@ function convertTemperature (run) {
   var tempF = (run - 273.15) * 1.8 + 32; 
   return (tempF)
  }
+
 $(document).ready(function () {
   var apiKey = "a3cc1b77d3dea57099c059db10e6c532";
 
@@ -67,15 +68,19 @@ $(document).ready(function () {
       $(".currentCon").append('<div> humidity: '+ response.main.humidity +' </div>'); 
       $(".currentCon").append('<div> windspeed: '+ response.wind.speed +' </div>'); 
      
-     var temp= response.main.temp 
+     var temp = response.main.temp 
      "the temp is" + response.main.temp 
 
       var lat = response.coord.lat;
       var lon = response.coord.lon; 
       getUVIndex(lat,lon); 
+
+  
     
     });
     
+
+
     function getUVIndex (lat,lon) {
       var queryUrl2 =
       "https://api.openweathermap.org/data/2.5/uvi?lat=" +lat+ "&lon="+ lon + "&appid=" +
@@ -121,11 +126,11 @@ $(document).ready(function () {
     function getFiveday() {
       // event.preventDefault();
       var currentCity = $("#runSearch").val();
-      console.log(currentCity);   
+      console.log(currentCity);  
 
-    var queryUrl3 =
-    "https://api.openweathermap.org/data/2.5/forecast?q=" + currentCity+ "&appid=" + apiKey;
-  
+      var queryUrl3 =
+      "https://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&lon=" + lon + "&appid=" + apiKey; 
+
     $.ajax({
         url: queryUrl3,
         method: "GET",
@@ -133,10 +138,9 @@ $(document).ready(function () {
         console.log(queryUrl3);
         console.log(response);
 
-        $(".fiveDay").append('<div> fiveday forcast: '+ response. </div>'); 
-\
 
-      
+        $(".fiveDay").append('<div> fiveday forcast: '+ response.current +'  <div>'); 
+
 
       });
   
@@ -147,17 +151,19 @@ $(document).ready(function () {
 
      for (var i = 0; i < response.list.length; i++) {
      
-      var day = response.list[i]
+      var current= response.list[i]
 
-      day.main.temp
-      day.main.humidity
+      current.temp
+      current.humidity
+      current.wind_speed
+      current.uvi
 
-      
-      $(".currentCon").append('<div> furtureForcast: '+  day.main.temp +
-      day.main.humidity +' </div>');  
-    
+     }
 
 
+// switch to one call api same as uv, actually daily  
+
+     // the api hasall this 
     //   // city name,
     //   // the current date,
     //   // an icon representation of the weather conditions,
@@ -178,15 +184,16 @@ $(document).ready(function () {
     
 
     $("city").val(localStorage.getItem("city"));
-    $("currentDate").val(localStorage.getItem("curentDate"));
+    $("currentDate").val(localStorage.getItem("curentDate")); 
     $("icon").val(localStorage.getItem("icon"));
     $("temp").val(localStorage.getItem("temp"));
     $("tempF").val(localStorage.getItem("tempF"));
     $("humidity").val(localStorage.getItem("humidity"));
     $("windSpeed").val(localStorage.getItem("windSpeed"));
-    }
-
+   }
+    
 });
+
 
 });
 
