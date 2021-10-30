@@ -1,23 +1,24 @@
-import logo from "./logo.svg";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Header from "../components/Header/index";
+import Navbar from "../components/Navbar/index";
+import Footer from "../components/Footer/index";
+import Barley from "../pages/Barley";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>I love Barley Barley is great!!!</p>
-        <a
-          className="App-link"
-          href="http://localhost:3000"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Barley
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Barley} />
+          <Route exact path="/Barley" component={Barley} />
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
 }
-
 export default App;
