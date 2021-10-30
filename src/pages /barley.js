@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "./components/header/index.js";
 
-function barley() {
+function Barley() {
   return <Header />;
 }
 
-export default barley;
+export default Barley;
