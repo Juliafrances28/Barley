@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Header from "../components/Header/index";
-import Navbar from "../components/Navbar/index";
-import Footer from "../components/Footer/index";
-import Barley from "../pages/Barley";
+import Barley from "./pages /Barley";
+import Header from "./Components /Header/index";
+import Navbar from "./Components /Navbar/index";
+import Footer from "./Components /Footer /index";
 
 function App() {
   return (

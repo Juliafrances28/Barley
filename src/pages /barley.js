@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./components/header/index.js";
+import Header from "../Components /Header/index";
 
 function Barley() {
   return <Header />;
