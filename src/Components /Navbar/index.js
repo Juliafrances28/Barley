@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 function Navbar() {
   return (
-    <nav className="navbar">
+    <nav id="navbar-example2" className="navbar navbar-light bg-light">
       <div>
         <ul className="navbar">
-          <li classname="nav">
+          <li className="nav">
             <Link
               to="/"
               className={
@@ -15,20 +16,24 @@ function Navbar() {
                   ? "nav-link active"
                   : "nav-link"
               }
-            ></Link>
+            >
+              {" "}
+              Barley
+            </Link>
           </li>
-
-          <li classname="nav">
+          <li className="nav">
             <Link
-              to="/"
+              to="Golden"
               className={
-                window.location.pathname === "/" ||
-                window.location.pathname === "/home"
+                window.location.pathname === "/Golden"
                   ? "nav-link active"
                   : "nav-link"
               }
-            ></Link>
-          </li>
+            >
+              {" "}
+              Golden
+            </Link>
+          </li>{" "}
         </ul>
       </div>
     </nav>

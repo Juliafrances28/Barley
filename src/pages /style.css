@@ -1,0 +1,125 @@
+/* This is for the header component */
+
+.header {
+  text-align: center;
+}
+
+/* This property references the barley and duck image in Barley.js aka the homepage. */
+.duck {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 50px;
+  width: 40%;
+  float: left;
+}
+
+/* This is for the footer component for Barley's Page */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: skyblue;
+  color: black;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* all styling below this point is for possible resue late on.  */
+
+/* This is for the paragraph on the About page */
+.text {
+  /* float: left; */
+  margin-right: 30px;
+}
+
+/* This property references the image in the contact page. */
+.girlCoding {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 50px;
+  width: 50%;
+}
+
+/* This property references the image in the resume page. */
+.link {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 50px;
+  width: 40%;
+  float: left;
+}
+
+/* This property references the second container className = skills. This concerns my skills, summary and education */
+
+.background {
+  float: right;
+  margin-left: 10px;
+}
+
+/* This property references how to  contact me  and websites links to learn  more about my work. */
+.reachme {
+  float: left;
+}
+
+/* .row {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center;
+  justify-content: space-between; 
+
+  border-right: 10px;
+} 
+
+/* This property refers to the contact info on the resume page  */
+.contact {
+  border-right: 10px;
+}
+
+/* This property refers to the contact info on the home page */
+.homepage {
+  padding-left: 50px;
+  padding-top: none;
+  text-align: center;
+}
+
+/* This property refers the covid-19 project on my portfolio page */
+.health {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 50px;
+  width: 80%;
+  float: left;
+}
+
+/* This property refers the <p> tag on the covid-19 project on my portfolio page */
+
+.covid {
+  margin-top: 20px;
+}
+
+/* This property refers to the img for bookbook project on the portfolio page  */
+.read {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 50px;
+  width: 80%;
+  float: right;
+}
+
+/* This property refers to  img for theresFoodatHome on the portfolio page */
+
+.homefood {
+  display: block;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 50px;
+  width: 80%;
+  float: left;
+  margin-bottom: 50px;
+}

@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "../Components /Container/index";
 import Row from "../Components /Row /index";
-import barley from "../images/barley.jpeg";
 import "./style.css";
 <link
   rel="stylesheet"
@@ -10,16 +9,23 @@ import "./style.css";
   crossorigin="anonymous"
 ></link>;
 
-function Dog() {
+function Golden() {
   return (
     <div>
       <Container>
         <Row>
-          <img src={barley} className="duck" alt="Dog" />
+          <p>
+            {" "}
+            Barley Barley Barley Barley Barely Barley Barley Barley Barley
+            Barely Barley Barley Barley Barley Barely Barley Barley Barley
+            Barley Barely Barley Barley Barley Barley Barely Barley Barley
+            Barley Barley Barely Barley Barley Barley Barley Barely Barley
+            Barley Barley Barley Barely{" "}
+          </p>
         </Row>
       </Container>
     </div>
   );
 }
 
-export default Dog;
+export default Golden;
